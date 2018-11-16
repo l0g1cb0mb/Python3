@@ -28,17 +28,23 @@ def wydrukuj_reszte(reszta):
     print(25*'-')
     print('Tak wydam resztę')
     print(25*'-')
+    
     for i, j in reszta.items():
         print(i, j)
+        
     print(25*'-')
 
-zlote = int(input("Ile złotych należy wydać: "))
-while zlote < 0:
-    zlote = int(input("Nie można wydać mniej niż 0 złotych... Podaj jeszcze raz ile złotych mam wydać: "))
+def pobierz_dane():
+    zlote = int(input("Ile złotych należy wydać: "))
+    while zlote < 0:
+        zlote = int(input("Nie można wydać mniej niż 0 złotych... Podaj jeszcze raz ile złotych mam wydać: "))
 
-grosze = int(input("Ile groszy należy wydać: "))
-while not(0 <= grosze <= 99):
-    grosze = int(input("Ilość groszy do wydania musi być większa lub równa 0 i mniejsza lub równa 99. Podaj jeszcze raz ile groszy mam wydać: "))
+    grosze = int(input("Ile groszy należy wydać: "))
+    while not(0 <= grosze <= 99):
+        grosze = int(input("Ilość groszy do wydania musi być większa lub równa 0 i mniejsza lub równa 99. Podaj jeszcze raz ile groszy mam wydać: "))
 
+    return zlote, grosze
+
+zlote, grosze = pobierz_dane()
 reszta = problem_kasjera(zlote, grosze)
 wydrukuj_reszte(reszta)
