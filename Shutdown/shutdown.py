@@ -1,9 +1,9 @@
 import os
 
 def shutdown():
-    min = int(input("Za ile minut ma nastąpić wyłączenie komputera?\n"))
-    sec = 60 * min
-    os.system(f"shutdown -s -t {sec}")
+    sec = int(input("Za ile minut ma nastąpić wyłączenie komputera?\n"))
+    min = 60 * sec
+    os.system(f"shutdown -s -t {min}")
 
 def cancel_shutdown():
     os.system("shutdown -a")
