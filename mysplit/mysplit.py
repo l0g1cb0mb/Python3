@@ -1,23 +1,22 @@
 def mysplit(strng, char):
+    tmp = []
     lst = []
-    ls=[]
-    x=""
+    word = ""
     
     for i in range(len(strng)):
         if strng[i] != char and strng[i] != " ":
-            x+=strng[i]
+            word += strng[i]
         else:
-            lst.append(x)
-            x=""
-            continue
-        
-    lst.append(x)
-        
-    for i in range(len(lst)):
-        if lst[i] != "":
-            ls.append(lst[i])
+            tmp.append(word)
+            word = ""
             
-    return ls
+    tmp.append(word)
+        
+    for i in range(len(tmp)):
+        if tmp[i] != "":
+            lst.append(tmp[i])
+            
+    return lst
     
 def test():
     print(mysplit("To be or not to be, that is the question", "i"))
