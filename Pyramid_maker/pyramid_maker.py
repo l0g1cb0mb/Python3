@@ -15,28 +15,42 @@ def close(event):
     window.withdraw()
     exit(0)
 
-def click_me(event):
-    height = 0
-    tmp = int(blocks.get())
-
-    while blocks:
-        if ((height + 1) <= tmp):
-            tmp -= (height + 1)
-            height += 1
-        else:
-            break;
-
-    messagebox.showinfo("Pyramid maker", "You have " + blocks.get() + " blocks and you can make a pyramid with a height of " + str(height))
-    blocks.set("")
+def get_user_input():
+    blocks_entered = ttk.Entry(window, width = 12, textvariable = blocks)
+    blocks_entered.grid(column = 0, row = 1)
     blocks_entered.focus()
 
+def click_me(event):
+    height = 0
+    try:
+        tmp = int(blocks.get())
+    except ValueError as err:
+        messagebox.showinfo("Pyramid maker", "The parameter type must be int")
+        blocks.set("")
+        tmp = 0
+        
+        get_user_input()
+    except:
+        messagebox.showinfo("Pyramid maker", "Unexpected error occured! The program will close")
+        window.withdraw()
+        exit(0)
+    else:
+        while blocks:
+            if ((height + 1) <= tmp):
+                tmp -= (height + 1)
+                height += 1
+            else:
+                break;
+
+        messagebox.showinfo("Pyramid maker", "You have " + blocks.get() + " blocks and you can make a pyramid with a height of " + str(height))
+        blocks.set("")
+    
+
 window.bind("<Return>", click_me)
-window.bind("<Escape>", close)
+window.bind("<q>", close)
 
 blocks = tk.StringVar()
-blocks_entered = ttk.Entry(window, width = 12, textvariable = blocks)
-blocks_entered.grid(column = 0, row = 1)
-blocks_entered.focus()
+get_user_input()
 
 calculate = ttk.Button(window, text = "Calculate!", command = click_me)
 calculate.grid(column = 0, row = 2)
