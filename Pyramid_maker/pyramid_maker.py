@@ -7,9 +7,10 @@ window.title("Pyramid maker")
 window_width = 180
 window_height = 70
 window.geometry(str(window_width)+"x"+str(window_height))
+window.rowconfigure(0, weight = 1)
+window.columnconfigure(0, weight = 1)
 
-
-ttk.Label(window, text = "How many blocks do you have?").grid(column = 0, row = 0)
+question = ttk.Label(window, text = "How many blocks do you have?").grid(column = 0, row = 0)
 
 def close(event):
     window.withdraw()
@@ -17,10 +18,10 @@ def close(event):
 
 def get_user_input():
     blocks_entered = ttk.Entry(window, width = 12, textvariable = blocks)
-    blocks_entered.grid(column = 0, row = 1)
+    blocks_entered.grid(column = 0, row = 1, sticky = "nsew")
     blocks_entered.focus()
 
-def click_me(event):
+def click_me(event = 0):
     height = 0
     try:
         tmp = int(blocks.get())
@@ -28,7 +29,6 @@ def click_me(event):
         messagebox.showinfo("Pyramid maker", "The parameter type must be int")
         blocks.set("")
         tmp = 0
-        
         get_user_input()
     except:
         messagebox.showinfo("Pyramid maker", "Unexpected error occured! The program will close")
@@ -44,6 +44,7 @@ def click_me(event):
 
         messagebox.showinfo("Pyramid maker", "You have " + blocks.get() + " blocks and you can make a pyramid with a height of " + str(height))
         blocks.set("")
+        get_user_input()
     
 
 window.bind("<Return>", click_me)
