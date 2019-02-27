@@ -94,9 +94,10 @@ class Stats():
         print("\n",25*"*"+" THE END OF STATISTICS "+25*"*")
 
     def make_chart(self):
-        plt.plot(self.stat.keys(), self.stat.values())
-        plt.xlabel("Characters from the given alphabet")
-        plt.ylabel("Number of characters")
+        chart = plt.figure(num=f"Chart for {self.name}")
+        chart = plt.plot(self.stat.keys(), self.stat.values(), ".")
+        chart = plt.xlabel("Characters from the given alphabet")
+        chart = plt.ylabel("Number of characters")
         plt.show()
 
 s = Stats()
