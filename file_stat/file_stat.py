@@ -95,6 +95,8 @@ class Stats():
 
     def make_chart(self):
         plt.plot(self.stat.keys(), self.stat.values())
+        plt.xlabel("Characters from the given alphabet")
+        plt.ylabel("Number of characters")
         plt.show()
 
 s = Stats()
