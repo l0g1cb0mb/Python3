@@ -1,4 +1,5 @@
-# 5.9.15.1
+import matplotlib.pyplot as plt
+
 class Stats():
     alphabet = []
     name = ""
@@ -92,9 +93,14 @@ class Stats():
 		
         print("\n",25*"*"+" THE END OF STATISTICS "+25*"*")
 
+    def make_chart(self):
+        plt.plot(self.stat.keys(), self.stat.values())
+        plt.show()
+
 s = Stats()
 s.get_file_info()
 s.get_alphabet()
 s.read_file()
 s.stats()
 s.print_statistics()
+s.make_chart()
