@@ -4,8 +4,8 @@ from tkinter import messagebox
 
 window = tk.Tk()
 window.title("Pyramid maker")
-window_width = 180
-window_height = 70
+window_width = 250
+window_height = 100
 window.geometry(str(window_width)+"x"+str(window_height))
 window.rowconfigure(0, weight = 1)
 window.columnconfigure(0, weight = 1)
